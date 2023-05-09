@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Italian population evolution</title>
+	<meta content="text/html;charset=utf-8" http-equiv="Content-Type">
+	<meta content="utf-8" http-equiv="encoding">
+    <link rel="stylesheet" type="text/css" href="css/style.css">
+    <script src="lib/d3.min.js"></script>
+</head>
+<body>
+    <body>
+        <svg width="500" height="400"></svg>
+        <script>
+        var dataSet = [{"x": 50, "y": 100, "z": 10},
+        {"x": 100, "y": 150, "z": 25}]
+        var svg = d3.select("svg");
+        svg.selectAll("circle")
+        .data(dataSet) // this part will
+        .enter() // be clear soon
+        .append("circle")
+        .attr("cx", function(d) { return d.x})
+        .attr("cy", function(d) { return d.y})
+        .attr("r", function(d) { return d.z})
+</script>
+</body>
+</html>
+
+</body>
+</html>
