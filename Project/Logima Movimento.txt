@@ -1,0 +1,14 @@
+Domanda
+Dato un sistema di riferimento A, come minimizzare la distanza tra un punto xA e il successivo x nel secondo sistema B?
+
+
+Risposta
+Per minimizzare la distanza tra un punto xA in un sistema di riferimento A e il punto successivo xB nel sistema di riferimento B, è necessario trasformare il punto xA nel sistema di riferimento B e quindi calcolare 
+la distanza tra xB e il punto trasformato. Ciò può essere fatto seguendo i seguenti passaggi:
+
+1. Determina la matrice di trasformazione T che converte coordinate dal sistema di riferimento A al sistema di riferimento B.
+2. Applica la trasformazione T al punto xA per ottenere le sue coordinate xB nel sistema di riferimento B.
+3. Calcola la distanza tra xB e il punto successivo x' nel sistema di riferimento B.
+4. Seleziona il punto x' come punto successivo di xA se la sua distanza è la più vicina.
+
+In pratica, la matrice di trasformazione T dipende dal tipo di sistema di riferimento utilizzato e dal modo in cui i due sistemi sono posizionati l'uno rispetto all'altro. Ad esempio, se A e B sono sistemi di riferimento cartesiani, allora la matrice T potrebbe essere una matrice di rotazione e traslazione. Se i sistemi di riferimento sono sferici o cilindrici, allora la trasformazione richiederà l'uso di formule più complesse.
