@@ -1,5 +1,5 @@
 // Define the initial and final datasets
-const datasetA = [  { x1: 10, y1: 20,x2: 100, y2: 200},  { x1: 100, y1: 120,x2: 40, y2: 20   },  {x1: 305, y1: 200,x2: 80, y2: 10},  { x1: 90, y1: 20,x2: 110, y2: 200   }];
+const datasetA = [  { x1: 10, y1: 20,x2: 100, y2: 200,x3:300,y3:100},  { x1: 100, y1: 120,x2: 40, y2: 20,x3:230,y3:10},  {x1: 305, y1: 200,x2: 80, y2: 10,x3:40,y3:10},  { x1: 90, y1: 20,x2: 110, y2: 200,x3:12,y3:100   }];
 
 
 
@@ -54,7 +54,16 @@ const circles = svg.selectAll("circle")
       .attr("cy", d=>yScale(d.y2));
       number_event=1;
     }
-    else
+    
+    else if (number_event==1)
+    {
+        circles.transition()
+      .duration(1000)
+      .attr("cx", d=>xScale(d.x3))
+      .attr("cy", d=>yScale(d.y3));
+      number_event=2;
+    }
+    else if (number_event==2)
     {
         circles.transition()
       .duration(1000)
