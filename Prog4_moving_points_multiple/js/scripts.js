@@ -1,75 +1,34 @@
-// Define the initial and final positions of the circle
-const x1 = 50;
-const y1 = 50;
-const x2 = 200;
-const y2 = 200;
 
-const x3=75;
-const y3=100;
 
-// Define the margins and dimensions of the SVG container
-const margin = { top: 20, right: 20, bottom: 50, left: 50 };
-const width = 500 - margin.left - margin.right;
-const height = 500 - margin.top - margin.bottom;
 
-// Create an SVG container
-const svg = d3.select("body")
-  .append("svg")
-  .attr("width", width + margin.left + margin.right)
-  .attr("height", height + margin.top + margin.bottom)
+// Define the dataset of points
+const dataset = [
+  { x: 50, y: 50 },
+  { x: 100, y: 100 },
+  { x: 150, y: 50 },
+  { x: 200, y: 100 },
+];
+svg=d3.select('body').append('svg');
+// Create a fly-shaped point for each point in the dataset
+svg.selectAll("g")
+  .data(dataset)
+  .enter()
   .append("g")
-  .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
-
-// Define the x and y scales and axes
-const xScale = d3.scaleLinear()
-  .domain([0, 100])
-  .range([0, width]);
-const yScale = d3.scaleLinear()
-  .domain([0, 100])
-  .range([height, 0]);
-const xAxis = d3.axisBottom(xScale);
-const yAxis = d3.axisLeft(yScale);
-
-// Add the x and y axes to the SVG container
-svg.append("g")
-  .attr("transform", "translate(0," + height + ")")
-  .call(xAxis);
-svg.append("g")
-  .call(yAxis);
-
-// Create a circle element at the initial position
-const circle = svg.append("circle")
-  .attr("cx", x1)
-  .attr("cy", y1)
+  .attr("transform", d => `translate(${d.x},${d.y})`)
+  .append("circle")
   .attr("r", 10)
-  .style("fill", "red");
+  .style("fill", "black")
+  .style("stroke", "white")
+  .style("stroke-width", 2);
 
-var event_number=0;
-// Add a click event listener to the circle
-circle.on("click", function() {
-  // Move the circle to the final position
-  if (event_number==0)
-  {
-  circle.transition()
-    .duration(1000)
-    .attr("cx", x2)
-    .attr("cy", y2);
-    event_number=event_number+1
-  }
-  else if (event_number==1)
-  {
-    circle.transition()
-    .duration(1000)
-    .attr("cx", x3)
-    .attr("cy", y3);
-    event_number=2
-  }
-  else if (event_number==2)
-  {
-    circle.transition()
-    .duration(1000)
-    .attr("cx", x1)
-    .attr("cy", y1);
-    event_number=0
-  }
-});
+svg.selectAll("g")
+  .append("path")
+  .attr("d", "M0 0 L-5 -5 L-8 -15 Q-10 -20 0 -25 Q10 -20 8 -15 L5 -5 Z")
+  .style("fill", "white")
+  .style("stroke", "none");
+
+svg.selectAll("g")
+  .append("path")
+  .attr("d", "M-3 -3 L-6 -12 Q-8 -15 -6 -18 L-3 -22 Q-1 -25 1 -22 L4 -18 Q6 -15 4 -12 L1 -3 Z")
+  .style("fill", "white")
+  .style("stroke", "none");

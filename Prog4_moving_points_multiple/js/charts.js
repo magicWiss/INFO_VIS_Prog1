@@ -23,8 +23,15 @@ const xScale = d3.scaleLinear()
 const yScale = d3.scaleLinear()
   .domain([0, 500])
   .range([height, 0]);
+
+
 const xAxis = d3.axisBottom(xScale);
 const yAxis = d3.axisLeft(yScale);
+
+//slider per la velocita
+
+var duration=1000;
+
 
 // Add the x and y axes to the SVG container
 svg.append("g")
@@ -32,6 +39,12 @@ svg.append("g")
   .call(xAxis);
 svg.append("g")
   .call(yAxis);
+
+// gestione dello slider
+  d3.select("#mySlider").on("change", function(d){
+    duration = this.value
+    
+  })
 
 // Create circle elements for each point in datasetA
 const circles = svg.selectAll("circle")
@@ -49,7 +62,7 @@ const circles = svg.selectAll("circle")
     if (number_event==0)
     {
     circles.transition()
-      .duration(1000)
+      .duration(duration)
       .attr("cx", d=>xScale(d.x2))
       .attr("cy", d=>yScale(d.y2));
       number_event=1;
@@ -58,7 +71,7 @@ const circles = svg.selectAll("circle")
     else if (number_event==1)
     {
         circles.transition()
-      .duration(1000)
+      .duration(duration)
       .attr("cx", d=>xScale(d.x3))
       .attr("cy", d=>yScale(d.y3));
       number_event=2;
@@ -66,10 +79,15 @@ const circles = svg.selectAll("circle")
     else if (number_event==2)
     {
         circles.transition()
-      .duration(1000)
+      .duration(duration)
       .attr("cx", d=>xScale(d.x1))
       .attr("cy", d=>yScale(d.y1));
       number_event=0;
     }
       
   });
+
+
+
+
+
