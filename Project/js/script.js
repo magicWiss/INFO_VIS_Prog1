@@ -5,12 +5,14 @@
 const plot_container=d3.selectAll("#plot");     //Componente dove verrà inserito il plot
 const settings_container=d3.selectAll("#settings")  //Componente dove sono inserite i settaggi
 
-const margin = { top: 50, right: 40, bottom: 50, left: 50 };    //Margini del canvas svg 
+const margin = { top: 10, right: 40, bottom: 50, left: 50 };    //Margini del canvas svg 
 
-const width = 500;
-const height = 500 - margin.top - margin.bottom;
+const width = 700;
+const height = 400 - margin.top - margin.bottom;
 const extra_space=200;          //spazio extra del canvas
-const padding_cord=5;
+
+const padding_axisX=2;
+const padding_axisY=10;
 
 //Dati relativi alle images delle mosche plottate
 const imageAttributes = {
@@ -43,6 +45,7 @@ const svg = d3.select("#plot")
     .append("svg")
     .attr("width", width+extra_space)
     .attr("height", height+extra_space)
+    .attr("margin-top",-10)
     .append("g")
     .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
 
@@ -82,14 +85,10 @@ const svg = d3.select("#plot")
   }
 
 //Scale delle variabili x e y (il massimo valore presente nel dataset è 9.2 per x e 9.8 per y)
-var xScale = d3.scaleLinear()
-    .domain([0, 12])
-    .range([0, width]);
-var yScale = d3.scaleLinear()
-    .domain([0, 12])
-    .range([height, 0]);
-let xAxis = d3.axisBottom(xScale);
-let yAxis = d3.axisLeft(yScale);
+var xScale;
+var yScale;
+let xAxis; 
+let yAxis; 
 
 
 
@@ -97,7 +96,8 @@ let yAxis = d3.axisLeft(yScale);
 //funzione di disegno degli assi x e y
 function drawAxes() {
 
-    
+    yAxis= d3.axisLeft(yScale);
+    xAxis= d3.axisBottom(xScale);
     // Add the x and y axes to the SVG container
     x_axis_elem = svg.append("g")
         .attr("class", "xAxis")
@@ -199,7 +199,7 @@ function addFlys(data,view)
         .on("mousemove", function(d,i){
             
             Tooltip
-              .html("ID: " + d["ID"] +"<br>" + "X"+view+":"+d["x"+view]+"<br>"+"Y"+view+":"+d["y"+view])
+              .html("ID: " + d["id"] +"<br>" + "X"+view+":"+d["x"+view]+"<br>"+"Y"+view+":"+d["y"+view])
               .style("left", (d3.mouse(this)[0]+70) + "px")
               .style("top", (d3.mouse(this)[1]) + "px")})
         .on("mouseleave", mouseleave);
@@ -260,13 +260,51 @@ d3.select("#mySlider").on("change", function () {
     
 });
 }
+function findMinAndMax(data,label)
+{
+    min=Infinity
+    max=-Infinity
+    data.forEach(function(d) {
+        for (var key in d) {
+          if (key.includes(label)) {
+            var value = d[key];
+            if (value < min) {
+              min = value;
+            }
+            if (value > max) {
+              max = value;
+            }
+          }
+        }
+      });
+      return [min,max]
+}
+function defineScale(data)
+{
+    var valuesX=findMinAndMax(data,"x");
+    var valuesY=findMinAndMax(data,"y");
+    
+    //Scale delle variabili x e y (il massimo valore presente nel dataset è 9.2 per x e 9.8 per y)
+     xScale = d3.scaleLinear()
+    .domain([0, valuesX[1]+padding_axisX])
+    .range([0, width]);
+     yScale = d3.scaleLinear()
+    .domain([0, valuesY[1]+padding_axisY])
+    .range([height, 0]);
+
+
+    
+    
+
+
+}
 
 
 //funzione principale
 d3.json("data/data.json")
     .then(function (data) {
        
-        showlabels=false;
+        defineScale(data);
         duration = 500;
         create_slider();
         
@@ -281,7 +319,7 @@ d3.json("data/data.json")
     })
     .catch(function (error) {
 
-        console.log(error); // Some error handling here
+        console.log(error); 
     });
 
 

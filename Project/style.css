@@ -1,15 +1,31 @@
+body
+{
+  padding:0;
+  
+    font-family: Tahoma, sans-serif;
+
+}
 .container {
     display: flex;
+    margin-top: 0px;
     
   }
-  
+
+  p
+  {
+    font-size: 40px;
+    border-bottom: 2px solid #000;
+  }
+
   #plot {
     flex: 70%;
+    margin-top: 0;
     
-    background-color: #f0f0f0;
+    border: 1px solid #000;
   }
   
   #settings {
+    background-color: #f0f0f0;
     flex: 30%;
     padding: 10px;
   }
