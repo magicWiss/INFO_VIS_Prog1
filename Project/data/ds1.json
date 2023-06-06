@@ -1,12 +1,12 @@
 [
   { "id": 1, "x": 1.5, "y": 40, "class": "class1" },
   { "id": 2, "x": 3.2, "y": 80, "class": "class1" },
-  { "id": 3, "x": 2.1, "y": 20, "class": "class2" },
-  { "id": 4, "x": 0.7, "y": 90, "class": "class2" },
-  { "id": 5, "x": 4.8, "y": 50, "class": "class2" },
-  { "id": 6, "x": 2.4, "y": 70, "class": "class2" },
-  { "id": 7, "x": 4.3, "y": 30, "class": "class2" },
+  { "id": 3, "x": 2.1, "y": 21, "class": "class2" },
+  { "id": 4, "x": 0.7, "y": 95, "class": "class2" },
+  { "id": 5, "x": 4.8, "y": 53, "class": "class2" },
+  { "id": 6, "x": 2.4, "y": 72, "class": "class2" },
+  { "id": 7, "x": 4.3, "y": 39, "class": "class2" },
   { "id": 8, "x": 0.5, "y": 10, "class": "class3" },
-  { "id": 9, "x": 3.9, "y": 60, "class": "class3" },
+  { "id": 9, "x": 3.9, "y": 63, "class": "class3" },
   { "id": 10, "x": 1.8, "y": 10, "class": "class3" }
 ]

@@ -22,6 +22,9 @@ const imageAttributes = {
     xlinkHref: "images/mosca3.png" //path dell'image
   };
 
+
+//DICHIARAZIONE DELLE VARIBAILI
+
 var circles;        //variabile relativa ad i punti plottati (circles=flys)    
 var view = 1;       //variabile che conta il numero di click dell'utente (parte da 1 fino a 3)
 
@@ -31,6 +34,12 @@ var duration;       //durata della transizione
 var labels;         
 var showlabels;
 
+//Dichiarazione degli scale. Vengono istanziati al momento della lettura del dataset.
+var xScale;
+var yScale;
+let xAxis; 
+let yAxis; 
+
 
 
 
@@ -38,7 +47,7 @@ var showlabels;
 
 
 
-
+//DICHIARAZIONE DELLE FUNZIONI UTILIZZATE
   
 // Creazione dell'svg container
 const svg = d3.select("#plot")
@@ -84,11 +93,6 @@ const svg = d3.select("#plot")
       .style("opacity", 0.8)
   }
 
-//Scale delle variabili x e y (il massimo valore presente nel dataset è 9.2 per x e 9.8 per y)
-var xScale;
-var yScale;
-let xAxis; 
-let yAxis; 
 
 
 
@@ -134,10 +138,10 @@ function drawAxes() {
 function updateAxesText(view)
 {
     
-    // Select the element with the class "labels"
+    
     var elementX = d3.select(".labelX");
 
-    // Update the text of the element
+    
     elementX.text("x"+view);
 
     var elementY=d3.select(".labelY");
@@ -213,6 +217,7 @@ function updateDrawing(data, view, labels) {
        
         addFlys(data,view);
         
+        
        
 
     
@@ -224,7 +229,7 @@ const updateSpeed = (duration) => {
     var container=d3.selectAll("#testo")
         .text(duration)
 };
-
+//stampa del valore di velocità scelto
 function showSpeed(duration)
 {
     var container=d3.selectAll("#speed_Text")
@@ -260,6 +265,7 @@ d3.select("#mySlider").on("change", function () {
     
 });
 }
+//funzione util per l'individuazione di valori massimo e minimo delle variabili (x[1,2,3] e y[1,2,3])
 function findMinAndMax(data,label)
 {
     min=Infinity
@@ -279,6 +285,8 @@ function findMinAndMax(data,label)
       });
       return [min,max]
 }
+
+//inizializzazione degli scale in base ai valori massimi individuati nel dataset per le variabili x (x1,x2,x3) ed y(y1,y2,y3)
 function defineScale(data)
 {
     var valuesX=findMinAndMax(data,"x");
