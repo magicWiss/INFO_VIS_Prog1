@@ -1,0 +1,42 @@
+.container {
+    display: flex;
+    
+  }
+  
+  #plot {
+    flex: 70%;
+    
+    background-color: #f0f0f0;
+  }
+  
+  #settings {
+    flex: 30%;
+    padding: 10px;
+  }
+  
+  
+  #speed
+  {
+    flex:70%;
+    display: flex;
+    flex-direction: row;
+    text-align: left;
+    padding-top: 20px;
+  
+    
+  }
+
+  .name_setting
+  {
+    font-size: 20px;
+  }
+ 
+  #slider_Text
+  {
+
+    padding-left:20px;
+  }
+
+
+  
+  

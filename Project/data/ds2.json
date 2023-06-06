@@ -1,0 +1,12 @@
+[
+  { "id": 1, "x": 2, "y": 6, "class": "class1" },
+  { "id": 2, "x": 4, "y": 4, "class": "class1" },
+  { "id": 3, "x": 6, "y": 3, "class": "class1" },
+  { "id": 4, "x": 3, "y": 2, "class": "class1" },
+  { "id": 5, "x": 7, "y": 5, "class": "class1" },
+  { "id": 6, "x": 1, "y": 7, "class": "class1" },
+  { "id": 7, "x": 8, "y": 1, "class": "class1" },
+  { "id": 8, "x": 5, "y": 5, "class": "class2" },
+  { "id": 9, "x": 9, "y": 3, "class": "class2" },
+  { "id": 10, "x": 3, "y": 4, "class": "class3" }
+]
